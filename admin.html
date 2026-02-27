@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Blessings Chidazi</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/admin.css">
+
+    <!-- Dark Mode Init -->
+    <script>
+        (function() {
+            var savedTheme = localStorage.getItem('theme');
+            var systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+</head>
+<body class="admin-body">
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-content">
+            <a href="index.html" class="logo">B<span>.C.</span> Admin</a>
+            <div class="nav-actions">
+                <button id="themeToggle" class="theme-toggle" aria-label="Toggle Dark Mode">
+                    <i class="ri-moon-line" id="themeIcon"></i>
+                </button>
+                <button id="logoutBtn" class="btn btn-secondary nav-btn" style="display: none;">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- App Container -->
+    <main class="admin-container container" id="appContainer">
+        <!-- Auth Section -->
+        <section class="auth-section glass" id="authSection">
+            <h2 class="section-title text-center">Admin Login</h2>
+            <p class="text-center section-desc">Sign in to manage projects and messages.</p>
+            
+            <form id="loginForm" class="contact-form mt-4">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" class="form-control" required placeholder="admin@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" class="form-control" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Sign In <i class="ri-login-box-line"></i></button>
+                <div class="form-status" id="loginStatus"></div>
+            </form>
+        </section>
+
+        <!-- Dashboard Section -->
+        <section class="dashboard-section" id="dashboardSection" style="display: none;">
+            <div class="dashboard-header">
+                <h2>Dashboard Overview</h2>
+                <div class="dashboard-tabs">
+                    <button class="tab-btn active" data-tab="messages">Messages</button>
+                    <button class="tab-btn" data-tab="projects">Projects</button>
+                </div>
+            </div>
+
+            <!-- Messages Tab -->
+            <div class="tab-content active" id="messagesTab">
+                <div class="panel glass">
+                    <div class="panel-header">
+                        <h3>Contact Submissions</h3>
+                        <button class="btn btn-secondary btn-sm" id="refreshMessages"><i class="ri-refresh-line"></i> Refresh</button>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Subject</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="messagesTableBody">
+                                <!-- Populated dynamically -->
+                                <tr>
+                                    <td colspan="5" class="text-center">Loading messages...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Projects Tab -->
+            <div class="tab-content" id="projectsTab">
+                <div class="panel glass">
+                    <div class="panel-header">
+                        <h3>Portfolio Projects</h3>
+                        <button class="btn btn-primary btn-sm" id="addNewProjectBtn"><i class="ri-add-line"></i> Add New</button>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Category</th>
+                                    <th>Type</th>
+                                    <th>Link / Demo</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="projectsTableBody">
+                                <!-- Populated dynamically -->
+                                <tr>
+                                    <td colspan="5" class="text-center">Loading projects...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Message Modal -->
+    <div class="modal" id="messageModal">
+        <div class="modal-content glass">
+            <span class="close-modal">&times;</span>
+            <h3 id="modalSubject">Subject</h3>
+            <div class="modal-meta">
+                <p><strong>From:</strong> <span id="modalName"></span> (<a href="#" id="modalEmail"></a>)</p>
+                <p><strong>Date:</strong> <span id="modalDate"></span></p>
+            </div>
+            <div class="modal-body border-top mt-4 pt-4">
+                <p id="modalMessageContent">Message content here...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project Form Modal -->
+    <div class="modal" id="projectModal">
+        <div class="modal-content glass">
+            <span class="close-modal">&times;</span>
+            <h3 id="projectModalTitle">Add Project</h3>
+            <form id="projectForm" class="contact-form mt-4">
+                <input type="hidden" id="projectId">
+                
+                <div class="form-group border-bottom pb-4">
+                    <label>Project Type</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="projectType" value="design" checked> Design</label>
+                        <label><input type="radio" name="projectType" value="code"> Code/Dev</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="projTitle">Title</label>
+                    <input type="text" id="projTitle" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="projCategory">Category / Sub-title</label>
+                    <input type="text" id="projCategory" class="form-control" required placeholder="e.g. Brand Identity or JavaScript">
+                </div>
+
+                <div class="form-group">
+                    <label for="projDesc">Description</label>
+                    <textarea id="projDesc" class="form-control" rows="3" required></textarea>
+                </div>
+                
+                <!-- Design Specific Fields -->
+                <div id="designFields">
+                    <div class="form-group">
+                        <label for="projImage">Image URL</label>
+                        <input type="url" id="projImage" class="form-control" placeholder="./assets/img/project1.png">
+                    </div>
+                </div>
+
+                <!-- Code Specific Fields -->
+                <div id="codeFields" style="display: none;">
+                    <div class="form-group">
+                        <label for="projDemo">Live Demo URL</label>
+                        <input type="url" id="projDemo" class="form-control" placeholder="https://...">
+                    </div>
+                    <div class="form-group">
+                        <label for="projGithub">GitHub URL</label>
+                        <input type="url" id="projGithub" class="form-control" placeholder="https://github.com/...">
+                    </div>
+                </div>
+
+                <div class="form-status" id="projectFormStatus"></div>
+                <button type="submit" class="btn btn-primary btn-block mt-4">Save Project</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <!-- Supabase JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="./js/supabase-config.js"></script>
+    <script>
+        // Simple dark mode toggle for admin layout (shared logic)
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        if (themeToggleBtn && themeIcon) {
+            const savedTheme = localStorage.getItem('theme');
+            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+                themeIcon.classList.remove('ri-moon-line');
+                themeIcon.classList.add('ri-sun-line');
+            }
+            themeToggleBtn.addEventListener('click', () => {
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                let targetTheme = 'light';
+                if (currentTheme === 'dark') {
+                    themeIcon.classList.remove('ri-sun-line');
+                    themeIcon.classList.add('ri-moon-line');
+                } else {
+                    targetTheme = 'dark';
+                    themeIcon.classList.remove('ri-moon-line');
+                    themeIcon.classList.add('ri-sun-line');
+                }
+                document.documentElement.setAttribute('data-theme', targetTheme);
+                localStorage.setItem('theme', targetTheme);
+            });
+        }
+    </script>
+    <script src="./js/admin.js"></script>
+</body>
+</html>

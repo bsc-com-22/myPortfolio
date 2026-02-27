@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Blessings Chidazi - Graphic Designer & Web Developer. Founder and Creative Lead of Nyasa Creatives.">
+    <meta name="author" content="Blessings Chidazi">
+    <title>Blessings Chidazi | Graphic Designer & Web Developer</title>
+    
+    <!-- Open Graph / Social -->
+    <meta property="og:title" content="Blessings Chidazi | Graphic Designer & Web Developer">
+    <meta property="og:description" content="Portfolio of Blessings Chidazi. Specializing in strategic design and front-end development.">
+    <meta property="og:image" content="./assets/img/social_preview.png">
+    <meta property="og:url" content="https://blessingschidazi.com">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./css/style.css">
+
+    <!-- Dark Mode Init -->
+    <script>
+        (function() {
+            var savedTheme = localStorage.getItem('theme');
+            var systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-content">
+            <a href="#" class="logo">B<span>.C.</span></a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#design">Design</a></li>
+                <li><a href="#code">Code</a></li>
+                <li><a href="#skills">Skills</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button id="themeToggle" class="theme-toggle" aria-label="Toggle Dark Mode">
+                    <i class="ri-moon-line" id="themeIcon"></i>
+                </button>
+                <a href="#contact" class="btn btn-primary nav-btn">Let's Talk</a>
+                <button class="menu-toggle" aria-label="Toggle Navigation">
+                    <i class="ri-menu-3-line"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="close-menu"><i class="ri-close-line"></i></button>
+        <ul class="mobile-nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#design">Design</a></li>
+            <li><a href="#code">Code</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact" class="btn btn-primary">Let's Talk</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <header class="hero" id="home">
+        <div class="hero-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+        <div class="container hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">Available for freelance</div>
+                <h1 class="hero-title">
+                    Hi, I'm <span class="text-gradient">Blessings</span>. <br>
+                    Designer & Developer.
+                </h1>
+                <p class="hero-tagline">
+                    I craft digital experiences that merge strategic visual design with clean, responsive code. Founder & Creative Lead at Nyasa Creatives.
+                </p>
+                <div class="hero-actions">
+                    <a href="#design" class="btn btn-primary">View Portfolio <i class="ri-arrow-right-line"></i></a>
+                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                </div>
+                <div class="hero-socials">
+                    <a href="https://github.com/bsc-com-22" target="_blank" aria-label="GitHub"><i class="ri-github-fill"></i></a>
+                    <a href="https://linkedin.com/in/blessingschidazi" target="_blank" aria-label="LinkedIn"><i class="ri-linkedin-fill"></i></a>
+                    <a href="https://behance.net/blessingschidazi" target="_blank" aria-label="Behance"><i class="ri-behance-fill"></i></a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="profile-card">
+                    <img src="./assets/img/profile.jpg" alt="Blessings Chidazi Profile Photo" class="profile-img">
+                    <div class="floating-badge badge-1"><i class="ri-palette-line"></i> Design</div>
+                    <div class="floating-badge badge-2"><i class="ri-code-s-slash-line"></i> Code</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section class="section about" id="about">
+        <div class="container grid-layout about-grid">
+            <div class="about-image">
+                <div class="about-card">
+                    <h3 class="card-title">Nyasa Creatives</h3>
+                    <p>As the founder and Creative Lead, I bridge the gap between aesthetics and functionality, helping brands scale digitally.</p>
+                </div>
+            </div>
+            <div class="about-text">
+                <h2 class="section-title">About Me</h2>
+                <h3 class="section-subtitle">Blending creativity with solid engineering.</h3>
+                <p>
+                    I'm Blessings Chidazi, a versatile multidisciplinary professional based in Malawi. I specialize in both Graphic Design and Web Development, allowing me to foresee the entire lifecycle of a project—from the initial wireframe and brand identity to the final deployment.
+                </p>
+                <p>
+                    Proficient in industry-standard tools like Photoshop, Illustrator, and InDesign, I create compelling visual narratives. On the development side, I bring these visions to life using modern web technologies (HTML, CSS, JS), ensuring responsive and accessible experiences.
+                </p>
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-number">5+</span>
+                        <span class="stat-label">Years Experience</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">Projects Completed</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Design Portfolio Section -->
+    <section class="section design-work bg-light" id="design">
+        <div class="container">
+            <div class="section-header center">
+                <h2 class="section-title">Featured Design</h2>
+                <p class="section-desc">Selected visual identities, UI/UX, and brand projects.</p>
+            </div>
+            <div class="portfolio-grid">
+                <!-- Project 1 -->
+                <article class="portfolio-card">
+                    <div class="portfolio-img-wrap">
+                        <img src="./assets/img/project1.png" alt="Brand Identity" class="portfolio-img">
+                        <div class="portfolio-overlay">
+                            <a href="#" class="view-btn"><i class="ri-eye-line"></i></a>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <span class="portfolio-category">Brand Identity</span>
+                        <h3 class="portfolio-title">Tech Startup Rebrand</h3>
+                        <p>A minimalist, modern visual identity package tailored for an emerging SaaS company.</p>
+                    </div>
+                </article>
+                <!-- Project 2 -->
+                <article class="portfolio-card">
+                    <div class="portfolio-img-wrap">
+                        <img src="./assets/img/project2.png" alt="UI/UX Design" class="portfolio-img">
+                        <div class="portfolio-overlay">
+                            <a href="#" class="view-btn"><i class="ri-eye-line"></i></a>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <span class="portfolio-category">UI/UX Design</span>
+                        <h3 class="portfolio-title">Fintech Mobile App</h3>
+                        <p>Vibrant and user-centric mobile interface focusing on accessibility and ease of use.</p>
+                    </div>
+                </article>
+                <!-- Project 3 -->
+                <article class="portfolio-card">
+                    <div class="portfolio-img-wrap">
+                        <img src="./assets/img/project3.png" alt="Web Design" class="portfolio-img">
+                        <div class="portfolio-overlay">
+                            <a href="#" class="view-btn"><i class="ri-eye-line"></i></a>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <span class="portfolio-category">Web Design</span>
+                        <h3 class="portfolio-title">E-Commerce Platform</h3>
+                        <p>Sleek layout with a vibrant blue and white theme to boost conversion rates.</p>
+                    </div>
+                </article>
+            </div>
+            <div class="text-center mt-4">
+                <a href="https://behance.net/blessingschidazi" target="_blank" class="btn btn-secondary">View Behance Profile</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Development Work Section -->
+    <section class="section code-work" id="code">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Open Source & Code</h2>
+                <p class="section-desc">Highlights from my GitHub (bsc-com-22) and latest web development projects.</p>
+            </div>
+            
+            <div class="repo-grid">
+                <!-- Repo Card 1 -->
+                <div class="repo-card glass">
+                    <div class="repo-header">
+                        <i class="ri-book-mark-line"></i>
+                        <h3>nyasa-creatives-client</h3>
+                    </div>
+                    <p class="repo-desc">The official digital growth and performance-focused agency website. Built for speed and SEO.</p>
+                    <div class="repo-footer">
+                        <div class="repo-lang"><span class="lang-dot html"></span> HTML/CSS/JS</div>
+                        <div class="repo-links">
+                            <a href="#" class="repo-link" aria-label="Live Demo"><i class="ri-external-link-line"></i></a>
+                            <a href="https://github.com/bsc-com-22/nyasa-creatives-client" class="repo-link" target="_blank" aria-label="GitHub"><i class="ri-github-line"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Repo Card 2 -->
+                <div class="repo-card glass">
+                    <div class="repo-header">
+                        <i class="ri-book-mark-line"></i>
+                        <h3>personal-portfolio</h3>
+                    </div>
+                    <p class="repo-desc">Modern portfolio layout showcasing custom CSS properties, CSS Grid, and responsive UI components.</p>
+                    <div class="repo-footer">
+                        <div class="repo-lang"><span class="lang-dot js"></span> JavaScript</div>
+                        <div class="repo-links">
+                            <a href="#" class="repo-link" aria-label="Live Demo"><i class="ri-external-link-line"></i></a>
+                            <a href="https://github.com/bsc-com-22/personal-portfolio" class="repo-link" target="_blank" aria-label="GitHub"><i class="ri-github-line"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Repo Card 3 -->
+                <div class="repo-card glass">
+                    <div class="repo-header">
+                        <i class="ri-book-mark-line"></i>
+                        <h3>ecommerce-dashboard</h3>
+                    </div>
+                    <p class="repo-desc">Admin panel interface with data visualization charts and product management features.</p>
+                    <div class="repo-footer">
+                        <div class="repo-lang"><span class="lang-dot css"></span> CSS/SASS</div>
+                        <div class="repo-links">
+                            <a href="#" class="repo-link" aria-label="Live Demo"><i class="ri-external-link-line"></i></a>
+                            <a href="https://github.com/bsc-com-22/ecommerce-dashboard" class="repo-link" target="_blank" aria-label="GitHub"><i class="ri-github-line"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <a href="https://github.com/bsc-com-22" target="_blank" class="btn btn-secondary"><i class="ri-github-fill"></i> View full GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="section skills-section bg-light" id="skills">
+        <div class="container container-narrow">
+            <div class="section-header center">
+                <h2 class="section-title">Tools & Technologies</h2>
+                <p class="section-desc">My technical toolkit for building and designing digital products.</p>
+            </div>
+            
+            <div class="skills-wrapper">
+                <div class="skill-category">
+                    <h3 class="category-title">Design & Branding</h3>
+                    <div class="skill-icons">
+                        <div class="skill-icon-box ps-box" title="Adobe Photoshop">
+                            <i class="devicon-photoshop-plain"></i>
+                        </div>
+                        <div class="skill-icon-box ai-box" title="Adobe Illustrator">
+                            <i class="devicon-illustrator-plain"></i>
+                        </div>
+                        <div class="skill-icon-box id-box" title="Adobe InDesign">
+                            <span class="custom-icon id-icon">Id</span>
+                        </div>
+                        <div class="skill-icon-box dark-box" title="Figma">
+                            <i class="devicon-figma-plain colored"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3 class="category-title">Languages & Core Skills</h3>
+                    <div class="skill-icons">
+                        <div class="skill-icon-box html5-box" title="HTML5">
+                            <i class="devicon-html5-plain"></i>
+                        </div>
+                        <div class="skill-icon-box css3-box" title="CSS3">
+                            <i class="devicon-css3-plain"></i>
+                        </div>
+                        <div class="skill-icon-box js-box" title="JavaScript">
+                            <i class="devicon-javascript-plain" style="color:#000;"></i>
+                        </div>
+                        <div class="skill-icon-box cpp-box" title="C++">
+                            <i class="devicon-cplusplus-plain"></i>
+                        </div>
+                        <div class="skill-icon-box dark-box" title="Java">
+                            <i class="devicon-java-plain colored"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3 class="category-title">Frameworks, Tools & Platforms</h3>
+                    <div class="skill-icons">
+                        <div class="skill-icon-box dark-box" title="Tailwind CSS">
+                            <i class="devicon-tailwindcss-original colored"></i>
+                        </div>
+                        <div class="skill-icon-box git-box" title="Git">
+                            <i class="devicon-git-plain"></i>
+                        </div>
+                        <div class="skill-icon-box dark-box" title="GitHub">
+                            <i class="devicon-github-original github-icon"></i>
+                        </div>
+                        <div class="skill-icon-box dark-box" title="Node.js">
+                            <i class="devicon-nodejs-plain colored"></i>
+                        </div>
+                        <div class="skill-icon-box dark-box" title="Supabase">
+                            <i class="devicon-supabase-plain colored"></i>
+                        </div>
+                        <div class="skill-icon-box dark-box" title="VS Code">
+                            <i class="devicon-vscode-plain colored"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact" id="contact">
+        <div class="container grid-layout contact-grid">
+            <div class="contact-info">
+                <h2 class="section-title">Let's build something together.</h2>
+                <p class="contact-desc">
+                    Whether you have an idea for a project or just want to say hi, feel free to shoot me a message!
+                </p>
+                
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <div class="icon-box"><i class="ri-mail-send-line"></i></div>
+                        <div>
+                            <h4>Email</h4>
+                            <p><a href="mailto:hello@blessingschidazi.com">hello@blessingschidazi.com</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="icon-box"><i class="ri-map-pin-line"></i></div>
+                        <div>
+                            <h4>Location</h4>
+                            <p>Malawi</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="social-links-lg">
+                    <a href="https://linkedin.com/in/blessingschidazi" target="_blank" class="social-circle" aria-label="LinkedIn"><i class="ri-linkedin-fill"></i></a>
+                    <a href="https://github.com/bsc-com-22" target="_blank" class="social-circle" aria-label="GitHub"><i class="ri-github-fill"></i></a>
+                    <a href="https://behance.net/blessingschidazi" target="_blank" class="social-circle" aria-label="Behance"><i class="ri-behance-fill"></i></a>
+                    <a href="https://twitter.com/blessingschida" target="_blank" class="social-circle" aria-label="Twitter"><i class="ri-twitter-x-line"></i></a>
+                </div>
+            </div>
+            
+            <div class="contact-form-wrap glass">
+                <form id="contactForm" class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" class="form-control" required placeholder="John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" class="form-control" required placeholder="john@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" class="form-control" required placeholder="Project Inquiry">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" class="form-control" rows="5" required placeholder="How can I help you?"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Send Message <i class="ri-send-plane-fill"></i></button>
+                    <div class="form-status" id="formStatus"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container container-flex footer-content">
+            <div class="footer-logo">
+                <a href="#">B<span>.C.</span></a>
+            </div>
+            <div class="footer-copyright">
+                &copy; <span id="currentYear"></span> Blessings Chidazi. All rights reserved.
+            </div>
+            <div class="footer-credit">
+                Designed & Developed with <i class="ri-heart-fill"></i> in Malawi.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="./js/supabase-config.js"></script>
+    <script src="./js/script.js"></script>
+</body>
+</html>
