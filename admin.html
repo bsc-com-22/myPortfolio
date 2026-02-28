@@ -182,8 +182,10 @@
                 <!-- Design Specific Fields -->
                 <div id="designFields">
                     <div class="form-group">
-                        <label for="projImage">Image URL</label>
-                        <input type="url" id="projImage" class="form-control" placeholder="./assets/img/project1.png">
+                        <label for="projImage">Project Image</label>
+                        <input type="file" id="projImage" class="form-control" accept="image/png, image/jpeg, image/webp" style="padding: 0.5rem;">
+                        <input type="hidden" id="projImageUrl">
+                        <small style="display:block; margin-top:0.5rem; color:var(--text-muted)" id="currentImageDisplay"></small>
                     </div>
                 </div>
 

@@ -180,4 +180,152 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('theme', targetTheme);
         });
     }
+
+    // 8. Dynamically Load Projects from Supabase
+    async function loadPublicProjects() {
+        if (typeof supabaseClient === 'undefined' || !supabaseClient) return;
+
+        const publicDesignGrid = document.getElementById('publicDesignGrid');
+        const publicCodeGrid = document.getElementById('publicCodeGrid');
+
+        let allDesignProjects = [];
+        let displayedDesignCount = 0;
+        const BATCH_SIZE = 3; // For expandable list
+
+        try {
+            const { data, error } = await supabaseClient
+                .from('projects')
+                .select('*')
+                .order('created_at', { ascending: false });
+
+            if (error) throw error;
+
+            const designProjects = data.filter(p => p.type === 'design');
+            const codeProjects = data.filter(p => p.type === 'code');
+
+            allDesignProjects = designProjects;
+
+            // Render Function for Design
+            function renderDesignProjects(projects, clearContainer = false) {
+                if (!publicDesignGrid) return;
+
+                if (clearContainer) {
+                    publicDesignGrid.innerHTML = '';
+                    if (projects.length === 0) {
+                        publicDesignGrid.innerHTML = '<div class="text-center" style="grid-column: 1/-1; padding: 2rem; color: var(--text-muted);">No design projects published yet.</div>';
+                        return;
+                    }
+                }
+
+                let addedEls = [];
+
+                projects.forEach(proj => {
+                    const article = document.createElement('article');
+                    article.className = 'portfolio-card';
+
+                    const imgUrl = proj.image_url || './assets/img/project1.png';
+
+                    // The anchor wraps the image overlay and opens the image directly in a new page/tab per request
+                    article.innerHTML = `
+                        <div class="portfolio-img-wrap">
+                            <img src="${imgUrl}" alt="${proj.title}" class="portfolio-img">
+                            <div class="portfolio-overlay">
+                                <a href="${imgUrl}" target="_blank" class="view-btn"><i class="ri-eye-line"></i></a>
+                            </div>
+                        </div>
+                        <div class="portfolio-info">
+                            <span class="portfolio-category">${proj.category}</span>
+                            <h3 class="portfolio-title">${proj.title}</h3>
+                            <p>${proj.description}</p>
+                        </div>
+                    `;
+                    publicDesignGrid.appendChild(article);
+                    addedEls.push(article);
+                });
+
+                // Re-apply scrolling animation to newly added DOM elements
+                addedEls.forEach(el => {
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateY(20px)';
+                    el.style.transition = 'all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1)';
+                    observer.observe(el);
+                });
+            }
+
+            // Initial load for Design (expandable list functionality)
+            const initialProjects = allDesignProjects.slice(0, BATCH_SIZE);
+            displayedDesignCount += initialProjects.length;
+            renderDesignProjects(initialProjects, true);
+
+            const loadMoreBtnContainer = document.getElementById('designLoadMoreContainer');
+            const loadMoreBtn = document.getElementById('loadMoreDesignBtn');
+
+            if (loadMoreBtnContainer && loadMoreBtn) {
+                if (allDesignProjects.length > BATCH_SIZE) {
+                    loadMoreBtnContainer.style.display = 'block';
+
+                    loadMoreBtn.addEventListener('click', () => {
+                        const nextProjects = allDesignProjects.slice(displayedDesignCount, displayedDesignCount + BATCH_SIZE);
+                        renderDesignProjects(nextProjects, false);
+                        displayedDesignCount += nextProjects.length;
+
+                        if (displayedDesignCount >= allDesignProjects.length) {
+                            loadMoreBtnContainer.style.display = 'none'; // Hide when all loaded
+                        }
+                    });
+                } else {
+                    loadMoreBtnContainer.style.display = 'none';
+                }
+            }
+
+            // Render Code Projects
+            if (publicCodeGrid) {
+                publicCodeGrid.innerHTML = '';
+                if (codeProjects.length === 0) {
+                    publicCodeGrid.innerHTML = '<div class="text-center" style="grid-column: 1/-1; padding: 2rem; color: var(--text-muted);">No open source code projects published yet.</div>';
+                } else {
+                    let codeAddedEls = [];
+                    codeProjects.forEach(proj => {
+                        const div = document.createElement('div');
+                        div.className = 'repo-card glass';
+
+                        let linksHtml = '';
+                        if (proj.demo_url) linksHtml += `<a href="${proj.demo_url}" class="repo-link" target="_blank" aria-label="Live Demo"><i class="ri-external-link-line"></i></a>`;
+                        if (proj.github_url) linksHtml += `<a href="${proj.github_url}" class="repo-link" target="_blank" aria-label="GitHub"><i class="ri-github-line"></i></a>`;
+
+                        // Default to JS if category not provided or hard to parse, but let's use a generic dot
+                        div.innerHTML = `
+                            <div class="repo-header">
+                                <i class="ri-book-mark-line"></i>
+                                <h3>${proj.title}</h3>
+                            </div>
+                            <p class="repo-desc">${proj.description}</p>
+                            <div class="repo-footer">
+                                <div class="repo-lang"><span class="lang-dot js" style="background-color: var(--primary-color);"></span> ${proj.category || 'Development'}</div>
+                                <div class="repo-links">
+                                    ${linksHtml}
+                                </div>
+                            </div>
+                        `;
+                        publicCodeGrid.appendChild(div);
+                        codeAddedEls.push(div);
+                    });
+
+                    codeAddedEls.forEach(el => {
+                        el.style.opacity = '0';
+                        el.style.transform = 'translateY(20px)';
+                        el.style.transition = 'all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1)';
+                        observer.observe(el);
+                    });
+                }
+            }
+        } catch (err) {
+            console.error("Failed to fetch public projects:", err);
+            if (publicDesignGrid) publicDesignGrid.innerHTML = '<div class="text-center" style="grid-column: 1/-1; color: #FF3366;">Could not load projects. Please connect database.</div>';
+            if (publicCodeGrid) publicCodeGrid.innerHTML = '<div class="text-center" style="grid-column: 1/-1; color: #FF3366;">Could not load projects. Please connect database.</div>';
+        }
+    }
+
+    // Call it
+    loadPublicProjects();
 });

@@ -1,5 +1,5 @@
-const SUPABASE_URL = 'YOUR_SUPABASE_URL_HERE';
-const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY_HERE';
+const SUPABASE_URL = 'https://mnchytpajztpxtacankq.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_h7H2X6sFhCM5rwz2brPqBg_qO42XiPE';
 
 // Avoid initialization error if supabase is not defined (e.g. script failed to load)
 const supabaseClient = typeof supabase !== 'undefined'

@@ -150,52 +150,15 @@
                 <h2 class="section-title">Featured Design</h2>
                 <p class="section-desc">Selected visual identities, UI/UX, and brand projects.</p>
             </div>
-            <div class="portfolio-grid">
-                <!-- Project 1 -->
-                <article class="portfolio-card">
-                    <div class="portfolio-img-wrap">
-                        <img src="./assets/img/project1.png" alt="Brand Identity" class="portfolio-img">
-                        <div class="portfolio-overlay">
-                            <a href="#" class="view-btn"><i class="ri-eye-line"></i></a>
-                        </div>
-                    </div>
-                    <div class="portfolio-info">
-                        <span class="portfolio-category">Brand Identity</span>
-                        <h3 class="portfolio-title">Tech Startup Rebrand</h3>
-                        <p>A minimalist, modern visual identity package tailored for an emerging SaaS company.</p>
-                    </div>
-                </article>
-                <!-- Project 2 -->
-                <article class="portfolio-card">
-                    <div class="portfolio-img-wrap">
-                        <img src="./assets/img/project2.png" alt="UI/UX Design" class="portfolio-img">
-                        <div class="portfolio-overlay">
-                            <a href="#" class="view-btn"><i class="ri-eye-line"></i></a>
-                        </div>
-                    </div>
-                    <div class="portfolio-info">
-                        <span class="portfolio-category">UI/UX Design</span>
-                        <h3 class="portfolio-title">Fintech Mobile App</h3>
-                        <p>Vibrant and user-centric mobile interface focusing on accessibility and ease of use.</p>
-                    </div>
-                </article>
-                <!-- Project 3 -->
-                <article class="portfolio-card">
-                    <div class="portfolio-img-wrap">
-                        <img src="./assets/img/project3.png" alt="Web Design" class="portfolio-img">
-                        <div class="portfolio-overlay">
-                            <a href="#" class="view-btn"><i class="ri-eye-line"></i></a>
-                        </div>
-                    </div>
-                    <div class="portfolio-info">
-                        <span class="portfolio-category">Web Design</span>
-                        <h3 class="portfolio-title">E-Commerce Platform</h3>
-                        <p>Sleek layout with a vibrant blue and white theme to boost conversion rates.</p>
-                    </div>
-                </article>
+            <div class="portfolio-grid" id="publicDesignGrid">
+                <!-- Dynamically loaded from Supabase -->
+                <div class="text-center" style="grid-column: 1/-1; padding: 2rem; color: var(--text-muted);">
+                    <i class="ri-loader-4-line ri-spin" style="font-size: 2rem;"></i>
+                    <p>Loading projects...</p>
+                </div>
             </div>
-            <div class="text-center mt-4">
-                <a href="https://behance.net/blessingschidazi" target="_blank" class="btn btn-secondary">View Behance Profile</a>
+            <div class="text-center mt-4" id="designLoadMoreContainer" style="display: none;">
+                <button class="btn btn-secondary" id="loadMoreDesignBtn">Load More</button>
             </div>
         </div>
     </section>
@@ -208,53 +171,11 @@
                 <p class="section-desc">Highlights from my GitHub (bsc-com-22) and latest web development projects.</p>
             </div>
             
-            <div class="repo-grid">
-                <!-- Repo Card 1 -->
-                <div class="repo-card glass">
-                    <div class="repo-header">
-                        <i class="ri-book-mark-line"></i>
-                        <h3>nyasa-creatives-client</h3>
-                    </div>
-                    <p class="repo-desc">The official digital growth and performance-focused agency website. Built for speed and SEO.</p>
-                    <div class="repo-footer">
-                        <div class="repo-lang"><span class="lang-dot html"></span> HTML/CSS/JS</div>
-                        <div class="repo-links">
-                            <a href="#" class="repo-link" aria-label="Live Demo"><i class="ri-external-link-line"></i></a>
-                            <a href="https://github.com/bsc-com-22/nyasa-creatives-client" class="repo-link" target="_blank" aria-label="GitHub"><i class="ri-github-line"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Repo Card 2 -->
-                <div class="repo-card glass">
-                    <div class="repo-header">
-                        <i class="ri-book-mark-line"></i>
-                        <h3>personal-portfolio</h3>
-                    </div>
-                    <p class="repo-desc">Modern portfolio layout showcasing custom CSS properties, CSS Grid, and responsive UI components.</p>
-                    <div class="repo-footer">
-                        <div class="repo-lang"><span class="lang-dot js"></span> JavaScript</div>
-                        <div class="repo-links">
-                            <a href="#" class="repo-link" aria-label="Live Demo"><i class="ri-external-link-line"></i></a>
-                            <a href="https://github.com/bsc-com-22/personal-portfolio" class="repo-link" target="_blank" aria-label="GitHub"><i class="ri-github-line"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Repo Card 3 -->
-                <div class="repo-card glass">
-                    <div class="repo-header">
-                        <i class="ri-book-mark-line"></i>
-                        <h3>ecommerce-dashboard</h3>
-                    </div>
-                    <p class="repo-desc">Admin panel interface with data visualization charts and product management features.</p>
-                    <div class="repo-footer">
-                        <div class="repo-lang"><span class="lang-dot css"></span> CSS/SASS</div>
-                        <div class="repo-links">
-                            <a href="#" class="repo-link" aria-label="Live Demo"><i class="ri-external-link-line"></i></a>
-                            <a href="https://github.com/bsc-com-22/ecommerce-dashboard" class="repo-link" target="_blank" aria-label="GitHub"><i class="ri-github-line"></i></a>
-                        </div>
-                    </div>
+            <div class="repo-grid" id="publicCodeGrid">
+                <!-- Dynamically loaded from Supabase -->
+                <div class="text-center" style="grid-column: 1/-1; padding: 2rem; color: var(--text-muted);">
+                    <i class="ri-loader-4-line ri-spin" style="font-size: 2rem;"></i>
+                    <p>Loading projects...</p>
                 </div>
             </div>
             <div class="text-center mt-4">

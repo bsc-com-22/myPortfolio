@@ -264,7 +264,40 @@ document.addEventListener('DOMContentLoaded', () => {
             const payload = { type, title, category, description };
 
             if (type === 'design') {
-                payload.image_url = document.getElementById('projImage').value;
+                const imageInput = document.getElementById('projImage');
+                let finalImageUrl = document.getElementById('projImageUrl').value; // Default to existing
+
+                // If user selected a new file, upload it
+                if (imageInput.files && imageInput.files.length > 0) {
+                    const file = imageInput.files[0];
+                    const fileExt = file.name.split('.').pop();
+                    const fileName = `${Date.now()}_${Math.random().toString(36).substring(7)}.${fileExt}`;
+                    const filePath = `${fileName}`;
+
+                    btn.textContent = 'Uploading image...';
+
+                    const { data: uploadData, error: uploadError } = await supabaseClient.storage
+                        .from('portfolio-images')
+                        .upload(filePath, file);
+
+                    if (uploadError) {
+                        status.style.display = 'block';
+                        status.style.color = '#FF3366';
+                        status.textContent = 'Image upload failed: ' + uploadError.message;
+                        btn.disabled = false;
+                        btn.textContent = 'Save Project';
+                        return;
+                    }
+
+                    // Get public URL
+                    const { data: urlData } = supabaseClient.storage
+                        .from('portfolio-images')
+                        .getPublicUrl(filePath);
+
+                    finalImageUrl = urlData.publicUrl;
+                }
+
+                payload.image_url = finalImageUrl;
             } else {
                 payload.demo_url = document.getElementById('projDemo').value;
                 payload.github_url = document.getElementById('projGithub').value;
@@ -313,7 +346,10 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('projDesc').value = proj.description;
 
         if (proj.type === 'design') {
-            document.getElementById('projImage').value = proj.image_url || '';
+            document.getElementById('projImageUrl').value = proj.image_url || '';
+            document.getElementById('currentImageDisplay').textContent = proj.image_url ? `Current Image: ${proj.image_url.split('/').pop()}` : 'No image uploaded currently.';
+            // Clear the file input visually
+            document.getElementById('projImage').value = '';
         } else {
             document.getElementById('projDemo').value = proj.demo_url || '';
             document.getElementById('projGithub').value = proj.github_url || '';
